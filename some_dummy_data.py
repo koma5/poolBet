@@ -1,8 +1,8 @@
-from oddsboard.models import Block, Pool
+from oddsboard.models import Block, Pool, BetCombination, Deposit
 
 p = Pool(
   address = "1",
-  name = "pool1",
+  name = "BTC.com",
   )
 p.save()
 
@@ -18,7 +18,7 @@ b.save()
 
 p = Pool(
   address = "2",
-  name = "pool2",
+  name = "SlushPool",
 )
 p.save()
 
@@ -69,14 +69,49 @@ b = Block(
 )
 b.save()
 
-b = Block(
+b1 = Block(
   height=465311,
   inMainChain=False,
 )
-b.save()
+b1.save()
 
-b = Block(
+b2 = Block(
   height=465312,
   inMainChain=False,
 )
-b.save()
+b2.save()
+
+bc1 = BetCombination(
+    block=b2,
+    betAddress="1337zkf9XzvuhwdW2dHNBWHx3RZV1Fypq9",
+    miner=p,
+)
+bc1.save()
+
+bc2 = BetCombination(
+    block=b1,
+    betAddress="1337vY9LM2ma9aKVvFVW3PVGezSMXeHWno",
+    miner=p,
+)
+bc2.save()
+
+d = Deposit(
+    betCombination=bc1,
+    amount=5.3,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+d = Deposit(
+    betCombination=bc2,
+    amount= .3,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+d = Deposit(
+    betCombination=bc1,
+    amount=0.3,
+    address="175o52E64wHQumzfLFnKrPaukJsvo9pgMb",
+)
+d.save()
