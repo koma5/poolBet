@@ -1,0 +1,17 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "oddsboard/style.css" %}" />
+
+{% if blocks %}
+
+  {% for b in blocks %}
+    {% if b.inMainChain %}
+      <div class="block old">#{{ b.height }}</br>
+        miner: {{ b.miner.name }}</div>
+    {% else %}
+      <div class="block">#{{ b.height }}</br>which pool?</div>
+    {% endif %}
+  {% endfor %}
+
+{% else %}
+    <p>no blocks!</p>
+{% endif %}

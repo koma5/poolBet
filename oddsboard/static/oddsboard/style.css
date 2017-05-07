@@ -1,0 +1,12 @@
+.block {
+  width:150px;
+  height:150px;
+  border-style: solid;
+  margin:1px;
+  float:left;
+}
+
+.old {
+  color: #bbbbbb;
+  border-color:#bbbbbb;
+}
