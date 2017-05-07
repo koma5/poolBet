@@ -1,0 +1,2 @@
+- [ ] no login just deposit addresses per future block and pool
+- [ ] offline bookkeper for cash out 2nd database for private keys
