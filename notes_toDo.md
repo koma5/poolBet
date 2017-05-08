@@ -1,2 +1,3 @@
 - [ ] no login just deposit addresses per future block and pool
 - [ ] offline bookkeper for cash out 2nd database for private keys
+- [ ] blockHeight as primary key for block (block detail filter [1] not elegant)

@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "oddsboard/style.css" %}" />
+
+{% if block %}
+
+  {% if block.inMainChain %}
+    <div class="block old">#{{ block.height }}</br>
+      miner: {{ block.miner.name }}</div>
+  {% else %}
+    <div class="block">#{{ block.height }}</br>which pool?</br>value: {{ block.totalBetAmount }}</br>bets: {{ block.totalBets }}</div>
+  {% endif %}
+
+
+{% if block.betcombination_set.all %}
+<ul>
+  {% for bc in block.betcombination_set.all %}
+    {% for bet in bc.deposit_set.all %}
+      <li>{{ bc.miner.name }} -- {{ bet.amount }}</li>
+    {% endfor %}
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% else %}
+    <p>no block!</p>
+{% endif %}
