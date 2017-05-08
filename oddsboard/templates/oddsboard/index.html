@@ -8,7 +8,7 @@
       <div class="block old">#{{ b.height }}</br>
         miner: {{ b.miner.name }}</div>
     {% else %}
-      <div class="block"><a href="{% url 'oddsboard:detail' b.height %}">#{{ b.height }}</a></br>which pool?</br>value: {{ b.totalBetAmount }}</br>bets: {{ b.totalBets }}</div>
+      <div class="block"><a href="{% url 'oddsboard:detail' b.height %}">#{{ b.height }}</a></br>which pool?</br>value: {{ b.totalBetAmount }}Ƀ</br>bets: {{ b.totalBets }}</div>
     {% endif %}
   {% endfor %}
 
