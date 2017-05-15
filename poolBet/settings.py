@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'oddsboard.apps.OddsboardConfig',
+    'chaindiscovery.apps.ChaindiscoveryConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
