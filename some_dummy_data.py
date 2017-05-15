@@ -1,17 +1,17 @@
 from oddsboard.models import Block, Pool, BetCombination, Deposit
 
-p = Pool(
+p1 = Pool(
   address = "1",
   name = "BTC.com",
   )
-p.save()
+p1.save()
 
 b = Block(
   height=465305,
   myHash="00000000000000000007dc0c9c1f5c7aa25655f8e9996bcf9b82eb02faf7e9d6",
   blockchainInfoId=1502797,
   previousBlock="0000000000000000020a07fbd9f0266a6be77eb81ca04c7d7ee94aea1f566ddb",
-  miner=p,
+  miner=p1,
   inMainChain=True,
   )
 b.save()
@@ -68,6 +68,59 @@ b = Block(
   inMainChain=False,
 )
 b.save()
+
+
+bc1 = BetCombination(
+    block=b,
+    betAddress="1337ZMMgXFHqiA7ujRMw3NfURC2Cm6FD2h",
+    miner=p,
+)
+bc1.save()
+
+bc2 = BetCombination(
+    block=b,
+    betAddress="1337ZNncWgQvTUEBUiDXcrcZsEzZyaLNTx",
+    miner=p1,
+)
+bc2.save()
+
+d = Deposit(
+    betCombination=bc1,
+    amount=.4,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+d = Deposit(
+    betCombination=bc1,
+    amount=.4,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+d = Deposit(
+    betCombination=bc2,
+    amount=.3,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+d = Deposit(
+    betCombination=bc2,
+    amount=.3,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+d = Deposit(
+    betCombination=bc2,
+    amount=.3,
+    address="1koma5qm7M1bpJ37zXvrRmVoNJU9KaAVj",
+)
+d.save()
+
+
+
 
 b1 = Block(
   height=465311,
