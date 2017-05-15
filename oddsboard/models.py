@@ -9,27 +9,27 @@ class Pool(models.Model):
 
 class Block(models.Model):
     height = models.IntegerField(default=0)
-    myHash = models.CharField(max_length=64, null=True)
-    blockchainInfoId = models.IntegerField(null=True)
-    previousBlock = models.CharField(max_length=64, null=True)
+    my_hash = models.CharField(max_length=64, null=True)
+    blockchaininfo_id = models.IntegerField(null=True)
+    previous_block = models.CharField(max_length=64, null=True)
     miner = models.ForeignKey(Pool, null=True)
-    inMainChain = models.BooleanField(default=False)
-
-    def totalBetAmount(self):
-        return self.betcombination_set.aggregate(bet_amount_sum=models.Sum('deposit__amount'))['bet_amount_sum']
-
-    def totalBets(self):
-        return self.betcombination_set.aggregate(bet_count_sum=models.Count('deposit'))['bet_count_sum']
+    in_main_chain = models.BooleanField(default=False)
 
     def __str__(self):
         return '#{} {}'.format(self.height, self.myHash)
 
+    def total_bet_amount(self):
+        return self.betcombination_set.aggregate(bet_amount_sum=models.Sum('deposit__amount'))['bet_amount_sum']
+
+    def total_bets(self):
+        return self.betcombination_set.aggregate(bet_count_sum=models.Count('deposit'))['bet_count_sum']
+
 class BetCombination(models.Model):
     block = models.ForeignKey(Block)
-    betAddress = models.CharField(max_length=34)
+    bet_address = models.CharField(max_length=34)
     miner = models.ForeignKey(Pool)
 
 class Deposit(models.Model):
-    betCombination = models.ForeignKey(BetCombination)
+    betcombination = models.ForeignKey(BetCombination)
     amount = models.FloatField()
     address = models.CharField(max_length=34)

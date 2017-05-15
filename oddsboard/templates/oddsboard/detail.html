@@ -14,11 +14,11 @@
 
 {% if block %}
 
-  {% if block.inMainChain %}
+  {% if block.in_main_chain %}
     <div class="block old">#{{ block.height }}</br>
       miner: {{ block.miner.name }}</div>
   {% else %}
-    <div class="block">#{{ block.height }}</br>which pool?</br>value: {{ block.totalBetAmount }}Ƀ</br>bets: {{ block.totalBets }}
+    <div class="block">#{{ block.height }}</br>which pool?</br>value: {{ block.total_bet_amount }}Ƀ</br>bets: {{ block.total_bets }}
 
     {% if block.betcombination_set.all %}
     <ul>
