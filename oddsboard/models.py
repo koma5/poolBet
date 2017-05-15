@@ -16,16 +16,10 @@ class Block(models.Model):
     inMainChain = models.BooleanField(default=False)
 
     def totalBetAmount(self):
-        value = 0
-        for bc in self.betcombination_set.all():
-            value += bc.betAmount()
-        return value
+        return self.betcombination_set.aggregate(bet_amount_sum=models.Sum('deposit__amount'))['bet_amount_sum']
 
     def totalBets(self):
-        count = 0
-        for bc in self.betcombination_set.all():
-            count += bc.betCount()
-        return count
+        return self.betcombination_set.aggregate(bet_count_sum=models.Count('deposit'))['bet_count_sum']
 
     def __str__(self):
         return '#{} {}'.format(self.height, self.myHash)
@@ -34,18 +28,6 @@ class BetCombination(models.Model):
     block = models.ForeignKey(Block)
     betAddress = models.CharField(max_length=34)
     miner = models.ForeignKey(Pool)
-
-    def betAmount(self):
-        value = 0
-        for deposit in self.deposit_set.all():
-            value += deposit.amount
-        return value
-
-    def betCount(self):
-        count = 0
-        for deposit in self.deposit_set.all():
-            count += 1
-        return count
 
 class Deposit(models.Model):
     betCombination = models.ForeignKey(BetCombination)
